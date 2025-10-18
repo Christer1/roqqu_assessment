@@ -34,7 +34,7 @@ class RElevatedButtonTheme {
   );
 
   static Widget gradientButton({
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
     required String text,
   }) {
     return Container(

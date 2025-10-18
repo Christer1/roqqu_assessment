@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-class THelperFunctions {
+class RHelperFunctions {
 
 
   static void navigateToScreen(BuildContext context, Widget screen) {
