@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
-import 'package:roqqu_assessment/presentation/screens/widgets/coin_item.dart';
+import 'package:roqqu_assessment/presentation/screens/dashboard/widgets/coin_item.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
 class ListCoinSection extends StatelessWidget {

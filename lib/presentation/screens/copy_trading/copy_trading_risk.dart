@@ -89,7 +89,7 @@ class CopyTradingRisk extends StatelessWidget {
       borderColor: isSelected ? Color(0xFF85D1F0) : Colors.transparent,
       borderWidth: isSelected ? 2 : 0,
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(RSizes.gridViewSpacing),
       backgroundColor: AppColors.lightBackgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/presentation/screens/crypto_dashboard/crypto_dashboard_screen.dart';
+import 'package:roqqu_assessment/presentation/screens/dashboard/crypto_dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());

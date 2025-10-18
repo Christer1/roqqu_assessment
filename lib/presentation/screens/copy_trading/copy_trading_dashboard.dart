@@ -3,7 +3,8 @@ import 'package:roqqu_assessment/common/custom_shapes/circular_container.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
-import 'package:roqqu_assessment/presentation/screens/widgets/min_line_chart.dart';
+import 'package:roqqu_assessment/presentation/screens/copy_trading/widgets/profile_badge.dart';
+import 'package:roqqu_assessment/presentation/screens/dashboard/widgets/min_line_chart.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'copy_trading_details.dart';
@@ -42,7 +43,7 @@ class CopyTradingDashboard extends StatelessWidget {
         title:  Text('Copy Trading', style: TextStyles.body.copyWith(color: Colors.white, fontSize: 16)),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(RSizes.gridViewSpacing),
         child: Column(
           children: [
             SizedBox(height: RSizes.spaceBtwItems),
@@ -114,7 +115,7 @@ class CopyTradingDashboard extends StatelessWidget {
   Widget _buildDashboardCard(LinearGradient gradient, Image image, String title, String subtitle) {
     return Expanded(
       child: RRoundedContainer(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(RSizes.gridViewSpacing),
        gradient: gradient,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,21 +150,20 @@ class CopyTradingDashboard extends StatelessWidget {
   }) {
         return RRoundedContainer(
       margin: const EdgeInsets.symmetric(vertical: 8),
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(RSizes.gridViewSpacing),
       backgroundColor: AppColors.lightBackgroundColor,
       child: Column(
         children: [
           Row(
             children: [
-              RCircularContainer(
-                showBorder: true,
-                borderColor: Color(0xFF5283FF),
+              RProfileBadge(
                 width: 40,
                 height: 40,
                 backgroundColor: AppColors.lightBackgroundColor,
-                child: Center(child: Text("JI", style: TextStyles.subtitle.copyWith(color: Colors.white))),
+                borderColor: const Color(0xFF5283FF),
+                text: "JI",
+                textFontSize: 16, // you can adjust this if needed
               ),
-
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

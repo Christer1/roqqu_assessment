@@ -18,7 +18,13 @@ class RImages {
   static const String copyProTrader = "assets/images/copy_pro_trader.png";
 
 
+  //coins
+  static const String btcImgWithArrow = "assets/images/coins/btc_with_arrow.png";
+  static const String btc = "assets/images/coins/btc.png";
+
+
   //others
   static const String importantMessage = "assets/images/important_message.png";
+  static const String proTraderBadge = "assets/images/pro_trader_badge.png";
 
 }

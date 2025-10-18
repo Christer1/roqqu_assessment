@@ -26,7 +26,7 @@ class MiniLineChart extends StatelessWidget {
               color: Colors.greenAccent,
               belowBarData: BarAreaData(
                 show: true,
-                color: Colors.greenAccent.withOpacity(0.1),
+                color: Color.fromRGBO(0, 255, 133, 0.3),
               ),
               dotData: const FlDotData(show: false),
             ),

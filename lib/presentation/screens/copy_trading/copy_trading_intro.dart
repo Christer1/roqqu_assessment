@@ -83,6 +83,7 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
                   ? 'Get started'
                   : 'Next',
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

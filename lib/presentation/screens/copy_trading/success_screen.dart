@@ -4,7 +4,7 @@ import 'package:roqqu_assessment/core/constants/text_styles.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
-import '../crypto_dashboard/crypto_dashboard_screen.dart'; 
+import '../dashboard/crypto_dashboard_screen.dart'; 
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({super.key});
@@ -32,7 +32,7 @@ class SuccessScreen extends StatelessWidget {
             ),
             const SizedBox(height: RSizes.sm),
             Text(
-              "You have successfully copied BTC Master’s trade.",
+              "You have successfully copied BTC Master's trade.",
               style: TextStyles.body.copyWith(color: Colors.grey[400]),
               textAlign: TextAlign.center,
             ),
