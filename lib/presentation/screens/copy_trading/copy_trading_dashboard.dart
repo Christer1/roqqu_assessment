@@ -4,6 +4,7 @@ import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
 import 'package:roqqu_assessment/presentation/screens/widgets/min_line_chart.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'copy_trading_details.dart';
 
@@ -52,7 +53,7 @@ class CopyTradingDashboard extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                Image.asset('assets/images/icons/pro_trader.png'),
+                Image.asset(RImages.proTrader),
                 'My Dashboard', 'View trades'),
                 const SizedBox(width: 10),
                 _buildDashboardCard(LinearGradient(
@@ -61,7 +62,7 @@ class CopyTradingDashboard extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ), 
-            Image.asset('assets/images/icons/copy_trading_icon.png'),
+            Image.asset(RImages.copyTradingIcon),
             'Become a PRO trader', 
             'Apply now'),
               ],

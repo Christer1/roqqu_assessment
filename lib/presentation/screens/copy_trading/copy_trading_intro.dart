@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 import 'copy_trading_risk.dart';
@@ -20,13 +21,13 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
       'title': 'Copy PRO traders',
       'description':
           'Leverage expert strategies from professional traders to boost your trading results.',
-      'image': 'assets/images/copy_pro_trader.png',
+      'image': RImages.copyProTrader,
     },
     {
       'title': 'Do less, Win more',
       'description':
           'Streamline your approach to trading and increase your winning potential effortlessly.',
-      'image': 'assets/images/copy_pro_trader.png',
+      'image': RImages.copyProTrader,
     },
   ];
 

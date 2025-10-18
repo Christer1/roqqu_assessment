@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 import 'confirmation_pin_section.dart';
@@ -43,7 +44,7 @@ class ConfirmTransactionDetails extends StatelessWidget {
                 children: [
                   const CircleAvatar(
                     backgroundImage:
-                        AssetImage('assets/images/us_flag.png'),
+                        AssetImage(RImages.usFlag),
                     radius: RSizes.cardRadiusMd * 2,
                   ),
                   const SizedBox(height: RSizes.spaceBtwItems),

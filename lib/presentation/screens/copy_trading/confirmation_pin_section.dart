@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
 import 'package:roqqu_assessment/presentation/screens/copy_trading/success_screen.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
 class ConfirmationPinSection extends StatefulWidget {
@@ -56,7 +57,7 @@ class _ConfirmationPinSectionState extends State<ConfirmationPinSection> {
         child: Column(
           children: [
             const SizedBox(height: RSizes.spaceBtwSections),
-             Image.asset("assets/images/password_lock.png", height: 32),
+             Image.asset(RImages.passwordLock, height: 32),
             const SizedBox(height: RSizes.sm),
             Text(
               "Confirm Transaction",
@@ -93,7 +94,7 @@ class _ConfirmationPinSectionState extends State<ConfirmationPinSection> {
                   ),
                 ),
                 SizedBox(width: RSizes.sm),
-                Image.asset("assets/images/biometric.png"),
+                Image.asset(RImages.biometric),
               ],
             ),
             const SizedBox(height: RSizes.spaceBtwSections),

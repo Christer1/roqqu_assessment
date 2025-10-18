@@ -6,6 +6,7 @@ import 'package:roqqu_assessment/common/functions/bottom_sheet.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
 import 'package:roqqu_assessment/presentation/screens/copy_trading/copy_trading_risks_modal.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 
@@ -197,7 +198,7 @@ onPressed: () {
             SizedBox(height: RSizes.spaceBtwItems),
             // Illustration
             Image.asset(
-              'assets/images/important_message.png',
+              RImages.importantMessage,
               height: 140,
               fit: BoxFit.contain,
             ),

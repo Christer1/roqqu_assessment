@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 import '../crypto_dashboard/crypto_dashboard_screen.dart'; 
@@ -18,8 +19,7 @@ class SuccessScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
-            Image.asset(
-              "assets/images/success_check.png", 
+            Image.asset(RImages.successCheck, 
               height: 80,
             ),
             const SizedBox(height: RSizes.spaceBtwSections),

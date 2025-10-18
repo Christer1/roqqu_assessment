@@ -13,6 +13,7 @@ import 'package:roqqu_assessment/presentation/screens/widgets/copy_trading_card.
 import 'package:roqqu_assessment/presentation/screens/widgets/list_coin_section.dart';
 import 'package:roqqu_assessment/presentation/screens/widgets/place_holder_page.dart';
 import 'package:roqqu_assessment/presentation/screens/widgets/stay_updated.dart';
+import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
 class CryptoDashboardScreen extends StatefulWidget {
@@ -411,7 +412,7 @@ class HomePage extends StatelessWidget {
                     ),
 
                     /// Icons Row (headphone, notification, flag)
-                    const Row(
+                     Row(
                       children: [
                         Icon(Icons.headphones_outlined, color: Colors.black),
                         SizedBox(width: 16),
@@ -420,7 +421,7 @@ class HomePage extends StatelessWidget {
                         CircleAvatar(
                           radius: 12,
                           backgroundImage: AssetImage(
-                              'assets/images/us_flag.png'),
+                             RImages.usFlag),
                         ),
                       ],
                     ),
