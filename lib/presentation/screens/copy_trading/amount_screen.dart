@@ -89,7 +89,7 @@ class _AmountScreenState extends State<AmountScreen> {
                       Text(
                         "USD Balance",
                         style: TextStyles.body.copyWith(
-                          color: Color(0xFFA7B1BC),
+                          color: AppColors.greyColor,
                           fontSize: 12,
                         ),
                       ),

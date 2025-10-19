@@ -18,8 +18,6 @@ class ConfirmTransactionDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double netAmount = double.parse(amount) - double.parse(fee);
-
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
@@ -51,7 +49,7 @@ class ConfirmTransactionDetails extends StatelessWidget {
                   Text(
                     "Copy trading amount",
                     style:
-                        TextStyles.bodySmall.copyWith(color: Color(0xFFA7B1BC)),
+                        TextStyles.bodySmall.copyWith(color: AppColors.greyColor),
                   ),
                   const SizedBox(height: RSizes.sm * 0.5),
                   Text(
@@ -65,7 +63,7 @@ class ConfirmTransactionDetails extends StatelessWidget {
                     children: [
                       Text("PRO trader",
                           style: TextStyles.bodySmall
-                              .copyWith(color: Color(0XFFA7B1BC))),
+                              .copyWith(color: AppColors.greyColor)),
                       Text("BTC master",
                           style: TextStyles.bodySmall
                               .copyWith(color: Colors.white)),
@@ -77,7 +75,7 @@ class ConfirmTransactionDetails extends StatelessWidget {
                     children: [
                       Text("What you get",
                           style: TextStyles.bodySmall
-                              .copyWith(color: Color(0XFFA7B1BC))),
+                              .copyWith(color: AppColors.greyColor)),
                       Text("99 USD",
                           style: TextStyles.bodySmall
                               .copyWith(color: Colors.white)),
@@ -89,7 +87,7 @@ class ConfirmTransactionDetails extends StatelessWidget {
                     children: [
                       Text("Transaction Fee",
                           style: TextStyles.bodySmall
-                              .copyWith(color: Color(0XFFA7B1BC))),
+                              .copyWith(color: AppColors.greyColor)),
                       Text("1.00 USD",
                           style: TextStyles.bodySmall
                               .copyWith(color: Colors.white)),

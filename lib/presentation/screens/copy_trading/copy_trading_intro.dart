@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
+import 'package:roqqu_assessment/utils/helpers/helper_functions.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 import 'copy_trading_risk.dart';
 
@@ -99,10 +100,10 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
           duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
           height: 4,
-          width: 162,
-          // width: RHelperFunctions.screenWidth() * 0.4,
+          // width: 162,
+          width: MediaQuery.of(context).size.width * 0.4,
           decoration: BoxDecoration(
-            color: active ? Colors.blueAccent : Colors.grey.shade700,
+            color: (active) ? Colors.blueAccent : (index == 0) ?  Colors.blueAccent : Colors.grey.shade700,
             borderRadius: BorderRadius.circular(10),
           ),
         );

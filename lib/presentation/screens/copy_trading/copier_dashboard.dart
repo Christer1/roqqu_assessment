@@ -2,28 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:roqqu_assessment/common/custom_shapes/circular_container.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
-import 'package:roqqu_assessment/common/functions/bottom_sheet.dart';
 import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
-import 'package:roqqu_assessment/presentation/screens/copy_trading/copy_trading_risks_modal.dart';
-import 'package:roqqu_assessment/presentation/screens/copy_trading/widgets/profile_badge.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
-import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 
-class CopyTradingDetails extends StatelessWidget {
-  final String name;
-  final String roi;
-  final String aum;
-  final List<double> dataPoints;
+class CopierDashboard extends StatelessWidget {
 
-  const CopyTradingDetails({
-    super.key,
-    required this.name,
-    required this.roi,
-    required this.aum,
-    required this.dataPoints,
-  });
+  const CopierDashboard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +21,7 @@ class CopyTradingDetails extends StatelessWidget {
           backgroundColor: AppColors.backgroundColor,
           leading: const BackButton(color: Colors.white),
           title: Text(
-            'Trading Details',
+            'My Dashobard',
             style: TextStyles.subtitle.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w400,
@@ -53,10 +39,6 @@ class CopyTradingDetails extends StatelessWidget {
                   children: [
                     _buildTraderHeader(),
                     const SizedBox(height: RSizes.spaceBtwItems),
-                    _buildTraderStats(),
-                    const SizedBox(height: RSizes.spaceBtwItems),
-                    _buildCertifiedSection(),
-                    const SizedBox(height: RSizes.xs),
 
                     // Tab bar view
                     RRoundedContainer(
@@ -72,9 +54,9 @@ class CopyTradingDetails extends StatelessWidget {
                         unselectedLabelColor: AppColors.greyColor,
                         tabs: [
                           Tab(text: 'Chart'),
+                          Tab(text: 'Cur. Trades'),
                           Tab(text: 'Stats'),
-                          Tab(text: 'All Trades'),
-                          Tab(text: 'Copiers'),
+                          Tab(text: 'My Traders'),
                         ],
                       ),
                     ),
@@ -85,8 +67,8 @@ class CopyTradingDetails extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         SingleChildScrollView(child: _buildChartTab(context)),
+                        SingleChildScrollView(child: _buildCurrentTradesTab(context)),
                         SingleChildScrollView(child: _buildStatsTab(context)),
-                        SingleChildScrollView(child: _buildAllTradesTab(context)),
                         SingleChildScrollView(child: _buildCopiersTab(context)),
                       ],
                     ),
@@ -96,18 +78,6 @@ class CopyTradingDetails extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Fixed Copy Trade Button
-            Container(
-              color: AppColors.backgroundColor,
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 16, vertical: RSizes.spaceBtwItems),
-              child: RElevatedButtonTheme.gradientButton(
-                onPressed: () => _showRiskSheet(context),
-                text: 'Copy Trade',
-              ),
-            ),
-            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -115,48 +85,57 @@ class CopyTradingDetails extends StatelessWidget {
   }
 
   // --- Chart Tab ---
-  Widget _buildChartTab(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 200,
-            child: LineChart(
-              LineChartData(
-                gridData: const FlGridData(show: false),
-                titlesData: const FlTitlesData(show: false),
-                borderData: FlBorderData(show: false),
-                lineBarsData: [
-                  LineChartBarData(
-                    spots: List.generate(
-                        dataPoints.length,
-                        (i) => FlSpot(i.toDouble(), dataPoints[i])),
-                    isCurved: true,
-                    color: const Color(0xFF00FF85),
-                    barWidth: 3,
-                    belowBarData: BarAreaData(
-                      show: true,
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color.fromRGBO(0, 255, 133, 0.3),
-                          Colors.transparent,
-                        ],
-                      ),
-                    ),
-                    dotData: const FlDotData(show: false),
+Widget _buildChartTab(BuildContext context) {
+  // Raw data points for the line chart
+  final dataPoints = [0.2, 0.8, 0.4, 1.5, 0.4, 0.3];
+
+  return Padding(
+    padding: const EdgeInsets.only(top: 16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 200,
+          child: LineChart(
+            LineChartData(
+              gridData: const FlGridData(show: false),
+              titlesData: const FlTitlesData(show: false),
+              borderData: FlBorderData(show: false),
+              lineBarsData: [
+                LineChartBarData(
+                  spots: List.generate(
+                    dataPoints.length,
+                    (i) => FlSpot(i.toDouble(), dataPoints[i]),
                   ),
-                ],
-              ),
+                  isCurved: true,
+                  color: const Color(0xFF00FF85),
+                  barWidth: 3,
+                  belowBarData: BarAreaData(
+                    show: true,
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color.fromRGBO(0, 255, 133, 0.3),
+                        Colors.transparent,
+                      ],
+                    ),
+                  ),
+                  dotData: const FlDotData(show: false),
+                ),
+              ],
             ),
           ),
-        ],
-      ),
-    );
-  }
+        ),
+
+        SizedBox(height: RSizes.spaceBtwSections),
+        Text("Trading History", style: TextStyles.bodySmall.copyWith(color: Colors.white, fontWeight: FontWeight.w700),),
+        _buildCurrentTradesTab(context)
+      ],
+    ),
+  );
+}
+
 
   // --- Stats Tab ---
   Widget _buildStatsTab(BuildContext context) {
@@ -178,19 +157,25 @@ class CopyTradingDetails extends StatelessWidget {
                         color: Colors.white, fontWeight: FontWeight.w700)),
                 SizedBox(height: RSizes.sm),                    
                 const SizedBox(height: RSizes.sm),
-                _statItem('Average ROI', '+33.73%', Color(0xFF00FF85)),
+                _statItem('PRO traders', '17', AppColors.blueColor),
                 Divider(
                   thickness: 2,
                   color: Color(0xFF262932),
                 ),
                 SizedBox(height: RSizes.sm),                    
-                 _statItem('Win rate', '100%', Colors.white),
+                _statItem('Trading days', '43', Colors.white),
                 Divider(
                   thickness: 2,
                   color: Color(0xFF262932),
                 ),
                 SizedBox(height: RSizes.sm),                    
-                _statItem('Total profit', '61850.63 USDT', Colors.white),
+                _statItem('Profit share', '15%', Colors.white),
+                Divider(
+                  thickness: 2,
+                  color: Color(0xFF262932),
+                ),
+                SizedBox(height: RSizes.sm),                    
+                _statItem('Total Order', '56 USDT', Colors.white),
                 Divider(
                   thickness: 2,
                   color: Color(0xFF262932),
@@ -202,7 +187,7 @@ class CopyTradingDetails extends StatelessWidget {
                   color: Color(0xFF262932),
                 ),
                 SizedBox(height: RSizes.sm),                    
-                _statItem('Total trades', '72', Colors.white),
+                _statItem('Total copy trades', '72', Colors.white),                
               ],
             ),
           ),
@@ -259,7 +244,7 @@ class CopyTradingDetails extends StatelessWidget {
   }
 
   // --- All Trades Tab ---
-  Widget _buildAllTradesTab(BuildContext context) {
+  Widget _buildCurrentTradesTab(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.only(top: 16),
       shrinkWrap: true,
@@ -295,18 +280,15 @@ class CopyTradingDetails extends StatelessWidget {
 
 
             const SizedBox(height: RSizes.sm),
+            _tradeDetail('PRO Trader', 'BTC Master', showImg:  true),
+            SizedBox(height: RSizes.md),
             _tradeDetail('Entry price', '1.9661 USDT'),
             SizedBox(height: RSizes.md),
             _tradeDetail('Market price', '1.9728 USDT'),
             SizedBox(height: RSizes.md),
-            _tradeDetail('Copiers', '20'),
-            SizedBox(height: RSizes.md),
-            _tradeDetail('Copiers amount', '1009.772 USDT'),
-            SizedBox(height: RSizes.md),
-            _tradeDetail('Entry time', '01:22 PM'),
-            SizedBox(height: RSizes.md),
             _tradeDetail('Exit time', '01:22 PM'),
-            SizedBox(height: RSizes.md),          ],
+            SizedBox(height: RSizes.md), 
+          ],
         );
       },
     );
@@ -418,7 +400,7 @@ Widget _buildCopiersTab(BuildContext context) {
                               Text(
                                 "Total volume",
                                 style: TextStyles.bodySmall.copyWith(
-                                  color: AppColors.greyColor,
+                                  color:  AppColors.greyColor,
                                 ),
                               ),
                               Text(
@@ -477,101 +459,64 @@ Widget _buildCopiersTab(BuildContext context) {
 
   // --- Helper Sections ---
   Widget _buildTraderHeader() {
-    return Row(
-      children: [
-
-        RProfileBadge(
-          width: 50,
-          height: 50,
-          backgroundColor: const Color.fromRGBO(71, 205, 137, 0.14),
-          borderColor: const Color(0xFF47CD89),
-          text: "JI",
-          textFontSize: 18,
-        ),
-
-        const SizedBox(width: RSizes.sm2),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(name,
-                style: TextStyles.subtitle
-                    .copyWith(color: Colors.white, fontSize: 18)),
-            Row(
-              children: [
-                const Icon(Icons.people_alt_outlined,
-                    color: AppColors.blueColor, size: 16),
-                const SizedBox(width: RSizes.xs),
-                Text('500 Copiers',
-                    style: TextStyles.body
-                        .copyWith(color: AppColors.blueColor, fontSize: 12)),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTraderStats() {
-    return Row(
-      children: [
-        _infoChip('43 trading days'),
-        const SizedBox(width: RSizes.sm),
-        _infoChip('15% profit-share'),
-        const SizedBox(width: RSizes.sm),
-        _infoChip('56 total orders'),
-      ],
-    );
-  }
-
-  Widget _buildCertifiedSection() {
     return RRoundedContainer(
-      radius: RSizes.cardRadiusXs,
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(RSizes.gridViewSpacing),
       backgroundColor: AppColors.lightBackgroundColor,
+    
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Certified PROtrader",
-              style: TextStyles.body.copyWith(
-                  color: Colors.white, fontWeight: FontWeight.w700)),
-          const SizedBox(height: RSizes.sm),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Copy trading assets", style: TextStyles.bodySmall.copyWith(color: AppColors.greyColor)),
+              const SizedBox(height: RSizes.sm),
+              Text("\$5,564.96", style: TextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+            ],
+          ),
+    
+              const SizedBox(height: RSizes.sm),
+            Divider(
+              thickness: 2,
+              color: Color(0xFF262932),
+            ),
+    
+              const SizedBox(height: RSizes.sm),
+    
           Row(
             children: [
-              _badge(Icons.insert_chart, "High win rate", AppColors.greenColor,
-                  const Color.fromRGBO(23, 178, 106, 0.08)),
-              const SizedBox(width: RSizes.sm),
-              _badge(Icons.show_chart, "Great risk control", const Color(0xFFF79009),
-                  const Color.fromRGBO(247, 144, 9, 0.08)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Net Profit", style: TextStyles.bodySmall.copyWith(color: AppColors.greyColor)),
+                  const SizedBox(height: RSizes.sm),
+                  Text("\$5,564.96", style: TextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+                ],
+              ),
+              Spacer(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("Today's PNL", style: TextStyles.bodySmall.copyWith(color: AppColors.greyColor)),
+                  const SizedBox(height: RSizes.sm),
+                  Row(
+                    children: [
+                      Icon(Icons.arrow_upward_rounded, color: AppColors.greenColor, size: 20),
+                      Text("207.25", style: TextStyles.body.copyWith(color: AppColors.greenColor, fontWeight: FontWeight.w700)),
+                    ],
+                  ),
+                ],
+              ),              
             ],
           ),
         ],
       ),
+    
     );
   }
 
-  Widget _infoChip(String text) => RRoundedContainer(
-        backgroundColor: AppColors.lightBackgroundColor,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        radius: RSizes.cardRadiusXs,
-        child: Text(text,
-            style: TextStyles.bodySmall.copyWith(color: AppColors.greyColor)),
-      );
 
-  Widget _badge(IconData icon, String label, Color color, Color bg) =>
-      RRoundedContainer(
-        radius: RSizes.cardRadiusXs,
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        backgroundColor: bg,
-        child: Row(
-          children: [
-            Icon(icon, color: color, size: 18),
-            const SizedBox(width: RSizes.sm),
-            Text(label, style: TextStyles.bodySmall.copyWith(color: color)),
-          ],
-        ),
-      );
+
 
   Widget _statItem(String label, String value, Color color) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 6),
@@ -591,117 +536,35 @@ Widget _buildCopiersTab(BuildContext context) {
         ),
       );
 
-  Widget _tradeDetail(String label, String value) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16),
-    child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    Widget _tradeDetail(String label, String value, {bool showImg = false}) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisAlignment:
+              showImg ? MainAxisAlignment.start : MainAxisAlignment.spaceBetween,
           children: [
-            Text(label,
-                style:
-                    TextStyles.body.copyWith(color: AppColors.greyColor)),
-            Text(value,
-                style: TextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.w500)),
+            Text(
+              label,
+              style: TextStyles.body.copyWith(color: AppColors.greyColor),
+            ),
+            if (showImg) ...[
+              const Spacer(),
+              Image.asset(RImages.avatarImg),
+              const SizedBox(width: RSizes.xs),
+            ],
+            Text(
+              value,
+              style: TextStyles.body.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ],
         ),
-  );
+      );
+    }
 
-  void _showRiskSheet(BuildContext context) {
-    bool isChecked = false;
-    rShowSelectionSheet(
-      context,
-      child: StatefulBuilder(
-        builder: (context, setState) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close, color: Colors.white),
-                ),
-              ),
-              const SizedBox(height: RSizes.spaceBtwItems),
-              Image.asset(RImages.importantMessage,
-                  height: 140, fit: BoxFit.contain),
-              const SizedBox(height: RSizes.spaceBtwItems),
-              Text('Important message!',
-                  style: TextStyles.headline
-                      .copyWith(color: Colors.white, fontSize: 20)),
-              const SizedBox(height: RSizes.sm),
-              Text(
-                "Don't invest unless you're prepared and understand the risks involved in copy trading.",
-                style: TextStyles.body.copyWith(color: Colors.grey[300]),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: RSizes.sm),
-              RichText(
-                text: TextSpan(
-                  text: 'Learn more',
-                  style:
-                      TextStyles.body.copyWith(color: Colors.lightBlueAccent),
-                  children: [
-                    TextSpan(
-                      text: ' about the risks.',
-                      style: TextStyles.body
-                          .copyWith(color: Colors.grey[300]),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Checkbox(
-                    value: isChecked,
-                    activeColor: Colors.lightBlueAccent,
-                    onChanged: (value) {
-                      setState(() {
-                        isChecked = value ?? false;
-                      });
-                    },
-                  ),
-                  Expanded(
-                    child: RichText(
-                      text: TextSpan(
-                        text: "Check this box to agree to Roqqu's copy trading ",
-                        style: TextStyles.bodySmall.copyWith(
-                            color: Colors.white, fontWeight: FontWeight.w700),
-                        children: [
-                          TextSpan(
-                            text: 'policy',
-                            style: TextStyles.body.copyWith(
-                                color: Colors.lightBlueAccent,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              SizedBox(
-                width: double.infinity,
-                child: AbsorbPointer(
-                  absorbing: !isChecked,
-                  child: Opacity(
-                    opacity: isChecked ? 1.0 : 0.5,
-                    child: RElevatedButtonTheme.gradientButton(
-                      onPressed: () => CopyTradingRisksModal.show(context),
-                      text: 'Proceed to copy trade',
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16),
-            ],
-          );
-        },
-      ),
-    );
-  }
+
 }
 
 

@@ -38,7 +38,7 @@ class CopyTradingRisk extends StatelessWidget {
             const Text(
               'Choose a level',
               style: TextStyle(
-                color: Color(0xFFA7B1BC),
+                color: AppColors.greyColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
               ),
@@ -86,7 +86,7 @@ class CopyTradingRisk extends StatelessWidget {
   Widget _buildRiskOption({required String title, required String description, bool isSelected = false}) {
     return RRoundedContainer(
       showBorder: isSelected ? true : false,
-      borderColor: isSelected ? Color(0xFF85D1F0) : Colors.transparent,
+      borderColor: isSelected ? AppColors.blueColor : Colors.transparent,
       borderWidth: isSelected ? 2 : 0,
       width: double.infinity,
       padding: const EdgeInsets.all(RSizes.gridViewSpacing),

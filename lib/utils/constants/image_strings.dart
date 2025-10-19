@@ -26,5 +26,6 @@ class RImages {
   //others
   static const String importantMessage = "assets/images/important_message.png";
   static const String proTraderBadge = "assets/images/pro_trader_badge.png";
+  static const String avatarImg = "assets/images/avatar.png";
 
 }

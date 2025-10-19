@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:roqqu_assessment/core/constants/colors.dart';
 import 'package:roqqu_assessment/core/constants/text_styles.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
@@ -21,7 +22,7 @@ class StayUpdated extends StatelessWidget {
             child: Text(
               'Stay Updated',
               style: TextStyles.body.copyWith(
-                color: Color(0xFFA7B1BC),
+                color: AppColors.greyColor,
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
               ),

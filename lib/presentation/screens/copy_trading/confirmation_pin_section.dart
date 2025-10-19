@@ -67,7 +67,7 @@ class _ConfirmationPinSectionState extends State<ConfirmationPinSection> {
             const SizedBox(height: RSizes.sm),
             Text(
               "Input your 6 digit transaction PIN to confirm your transaction and authenticate your request",
-              style: TextStyles.body.copyWith(color: Color(0xFFA7B1BC)),
+              style: TextStyles.body.copyWith(color: AppColors.greyColor),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: RSizes.spaceBtwSections),

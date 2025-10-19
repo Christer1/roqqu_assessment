@@ -83,13 +83,23 @@ Widget _buildModalSheet() {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
       height: screenHeight * 0.85,
+
       decoration: const BoxDecoration(
         color: AppColors.backgroundColor,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(28),
           topRight: Radius.circular(28),
         ),
+    boxShadow: [
+      BoxShadow(
+        color: AppColors.backgroundColor,
+        spreadRadius: 2, 
+        blurRadius: 10,
+        offset: Offset(0, -3), 
       ),
+    ],        
+      ),
+    
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -121,7 +131,7 @@ Widget _buildModalSection(String title, List<Map<String, dynamic>> items) {
         Text(
           title,
           style: TextStyles.body.copyWith(
-            color: Color(0xFFA7B1BC),
+            color: AppColors.greyColor,
             fontSize: 14,
             fontWeight: FontWeight.w700,
           ),
