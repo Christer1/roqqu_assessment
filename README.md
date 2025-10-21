@@ -30,14 +30,6 @@ State Management: GetX
  WebSocket Source: Binance Stream API
 
 
-# Implemented Features:
-
-Real-time market data updates for multiple coins
-
-Automatic reconnection and error handling
-
-Efficient update rendering without unnecessary rebuilds
-
 # Setup Instructions
 
 Clone the repository
