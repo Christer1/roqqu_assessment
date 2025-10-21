@@ -61,9 +61,10 @@ flutter run
 
 *Below are links to videos demonstrating the project:*
 
+Physical device:   https://drive.google.com/file/d/1odXuxk1SYTPmWCFMH5wYTuE65U1Fx4He/view?usp=sharing
+
 Simulator device:  https://drive.google.com/file/d/1n49TnDO1eFeqWn37T25jmoXkCACze7QK/view?usp=sharing
 
-Physical device:   https://drive.google.com/file/d/1odXuxk1SYTPmWCFMH5wYTuE65U1Fx4He/view?usp=sharing
 
 
 
