@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
 rShowSelectionSheet(

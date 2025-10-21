@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
 
 class RCircularContainer extends StatelessWidget {
   const RCircularContainer({

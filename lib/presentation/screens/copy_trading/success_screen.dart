@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
+import 'package:roqqu_assessment/utils/helpers/helper_functions.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 import '../dashboard/crypto_dashboard_screen.dart'; 
 
@@ -25,26 +26,22 @@ class SuccessScreen extends StatelessWidget {
             const SizedBox(height: RSizes.spaceBtwSections),
             Text(
               "Trade copied successfully",
-              style: TextStyles.headline.copyWith(
-                color: Colors.white,
+              style: RTextStyle.headline.copyWith(
+                color: AppColors.whiteColor,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(height: RSizes.sm),
             Text(
               "You have successfully copied BTC Master's trade.",
-              style: TextStyles.body.copyWith(color: Colors.grey[400]),
+              style: RTextStyle.body.copyWith(color: Colors.grey[400]),
               textAlign: TextAlign.center,
             ),
             const Spacer(),
             RElevatedButtonTheme.gradientButton(
               text: "Go to dashboard",
               onPressed: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(builder: (_) => const CryptoDashboardScreen()),
-                  (route) => false,
-                );
+                RHelperFunctions.navigateToScreen(context, CryptoDashboardScreen());
               },
             ),
             const SizedBox(height: RSizes.spaceBtwSections),

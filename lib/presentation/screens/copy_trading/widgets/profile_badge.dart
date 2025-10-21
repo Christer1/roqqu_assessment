@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/common/custom_shapes/circular_container.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 
 class RProfileBadge extends StatelessWidget {
   final double width;
@@ -20,7 +21,7 @@ class RProfileBadge extends StatelessWidget {
     required this.borderColor,
     required this.text,
     required this.textFontSize,
-    this.textColor = Colors.white,
+    this.textColor = AppColors.whiteColor,
     this.showBorder = true,
   });
 
@@ -35,7 +36,7 @@ class RProfileBadge extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: TextStyles.subtitle.copyWith(
+          style: RTextStyle.subtitle.copyWith(
             color: textColor,
             fontSize: textFontSize,
           ),

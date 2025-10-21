@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
+import 'package:get/get.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/routes/route_helper.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/helpers/helper_functions.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
-import 'copy_trading_risk.dart';
 
 class CopyTradingIntro extends StatefulWidget {
   const CopyTradingIntro({super.key});
@@ -39,10 +40,10 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.whiteColor),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Copy trading', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400)),
+        title: const Text('Copy trading', style: TextStyle(color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.w400)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -68,11 +69,7 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
             RElevatedButtonTheme.gradientButton(
               onPressed: () {
                 if (_currentPage == _pages.length - 1) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const CopyTradingRisk()),
-                  );
+                  Get.toNamed(RRouteHelper.copyTradingRisk);
                 } else {
                   _controller.nextPage(
                     duration: const Duration(milliseconds: 400),
@@ -101,7 +98,7 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
           margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
           height: 4,
           // width: 162,
-          width: MediaQuery.of(context).size.width * 0.4,
+          width: RHelperFunctions.screenWidth() * 0.4,
           decoration: BoxDecoration(
             color: (active) ? Colors.blueAccent : (index == 0) ?  Colors.blueAccent : Colors.grey.shade700,
             borderRadius: BorderRadius.circular(10),
@@ -123,7 +120,7 @@ class _CopyTradingIntroState extends State<CopyTradingIntro> {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.white,
+            color: AppColors.whiteColor,
             fontSize: 24,
             fontWeight: FontWeight.w800,
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
 
 class RElevatedButtonTheme {
   RElevatedButtonTheme._(); // to avoid creating instances
@@ -19,12 +20,12 @@ class RElevatedButtonTheme {
           return Colors.transparent;
         },
       ),
-      foregroundColor: WidgetStateProperty.all(Colors.white),
+      foregroundColor: WidgetStateProperty.all(AppColors.whiteColor),
       textStyle: WidgetStateProperty.all(
         const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w600,
-          color: Colors.white,
+          color: AppColors.whiteColor,
         ),
       ),
       // Add gradient overlay

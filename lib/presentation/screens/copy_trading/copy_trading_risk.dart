@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/routes/route_helper.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
-import 'copy_trading_dashboard.dart';
 
 class CopyTradingRisk extends StatelessWidget {
   const CopyTradingRisk({super.key});
@@ -15,10 +16,10 @@ class CopyTradingRisk extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: AppColors.whiteColor),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('Copy trading', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400)),
+        title: const Text('Copy trading', style: TextStyle(color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.w400)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -29,7 +30,7 @@ class CopyTradingRisk extends StatelessWidget {
             const Text(
               'What risk level are you comfortable exploring?',
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.whiteColor,
                 fontSize: 24,
                 fontWeight: FontWeight.w800,
               ),
@@ -67,12 +68,7 @@ class CopyTradingRisk extends StatelessWidget {
             const Spacer(),
             RElevatedButtonTheme.gradientButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const CopyTradingDashboard()),
-                );
+                Get.toNamed(RRouteHelper.copyTradingDashboard);
               },
               text: 'Proceed',
             ),
@@ -96,7 +92,7 @@ class CopyTradingRisk extends StatelessWidget {
         children: [
           Text(title,
               style: const TextStyle(
-                  color: Colors.white,
+                  color: AppColors.whiteColor,
                   fontWeight: FontWeight.w700,
                   fontSize: 16)),
           const SizedBox(height: 6),

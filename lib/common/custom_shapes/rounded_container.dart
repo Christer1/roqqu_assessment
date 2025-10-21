@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
 class RRoundedContainer extends StatelessWidget {

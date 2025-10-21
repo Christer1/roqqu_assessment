@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:get/get.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
+import 'package:roqqu_assessment/routes/route_helper.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
-import 'confirmation_pin_section.dart';
 
 class ConfirmTransactionDetails extends StatelessWidget {
   final String amount;
@@ -21,10 +22,10 @@ class ConfirmTransactionDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title:  Text('Confirm transaction', style: TextStyles.body.copyWith(color: Colors.white, fontSize: 16)),
+        title:  Text('Confirm transaction', style: RTextStyle.body.copyWith(color: AppColors.whiteColor, fontSize: 16)),
 
         backgroundColor: AppColors.backgroundColor,
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: AppColors.whiteColor),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -49,24 +50,24 @@ class ConfirmTransactionDetails extends StatelessWidget {
                   Text(
                     "Copy trading amount",
                     style:
-                        TextStyles.bodySmall.copyWith(color: AppColors.greyColor),
+                        RTextStyle.bodySmall.copyWith(color: AppColors.greyColor),
                   ),
                   const SizedBox(height: RSizes.sm * 0.5),
                   Text(
                     "$amount USD",
-                    style: TextStyles.headline.copyWith(
-                        color: Colors.white),
+                    style: RTextStyle.headline.copyWith(
+                        color: AppColors.whiteColor),
                   ),
                   const SizedBox(height: RSizes.spaceBtwItems),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("PRO trader",
-                          style: TextStyles.bodySmall
+                          style: RTextStyle.bodySmall
                               .copyWith(color: AppColors.greyColor)),
                       Text("BTC master",
-                          style: TextStyles.bodySmall
-                              .copyWith(color: Colors.white)),
+                          style: RTextStyle.bodySmall
+                              .copyWith(color: AppColors.whiteColor)),
                     ],
                   ),
                   const SizedBox(height: RSizes.md),
@@ -74,11 +75,11 @@ class ConfirmTransactionDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("What you get",
-                          style: TextStyles.bodySmall
+                          style: RTextStyle.bodySmall
                               .copyWith(color: AppColors.greyColor)),
                       Text("99 USD",
-                          style: TextStyles.bodySmall
-                              .copyWith(color: Colors.white)),
+                          style: RTextStyle.bodySmall
+                              .copyWith(color: AppColors.whiteColor)),
                     ],
                   ),
                   const SizedBox(height: RSizes.md),
@@ -86,11 +87,11 @@ class ConfirmTransactionDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Transaction Fee",
-                          style: TextStyles.bodySmall
+                          style: RTextStyle.bodySmall
                               .copyWith(color: AppColors.greyColor)),
                       Text("1.00 USD",
-                          style: TextStyles.bodySmall
-                              .copyWith(color: Colors.white)),
+                          style: RTextStyle.bodySmall
+                              .copyWith(color: AppColors.whiteColor)),
                     ],
                   ),                  
                 ],
@@ -100,11 +101,7 @@ class ConfirmTransactionDetails extends StatelessWidget {
             RElevatedButtonTheme.gradientButton(
               text: "Confirm transaction",
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => const ConfirmationPinSection()),
-                );
+                Get.toNamed(RRouteHelper.confirmTransactionPin);
               },
             ),
             const SizedBox(height: RSizes.spaceBtwSections),

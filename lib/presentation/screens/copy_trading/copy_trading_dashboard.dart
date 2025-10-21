@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roqqu_assessment/common/custom_shapes/circular_container.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
-import 'package:roqqu_assessment/presentation/screens/copy_trading/copier_dashboard.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 import 'package:roqqu_assessment/presentation/screens/copy_trading/widgets/profile_badge.dart';
 import 'package:roqqu_assessment/presentation/screens/dashboard/widgets/min_line_chart.dart';
+import 'package:roqqu_assessment/routes/route_helper.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
-import 'copy_trading_details.dart';
 
 class CopyTradingDashboard extends StatelessWidget {
   const CopyTradingDashboard({super.key});
@@ -39,9 +39,9 @@ class CopyTradingDashboard extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: AppColors.whiteColor),
         backgroundColor: AppColors.backgroundColor,
-        title:  Text('Copy Trading', style: TextStyles.body.copyWith(color: Colors.white, fontSize: 16)),
+        title:  Text('Copy Trading', style: RTextStyle.body.copyWith(color: AppColors.whiteColor, fontSize: 16)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(RSizes.gridViewSpacing),
@@ -61,12 +61,7 @@ class CopyTradingDashboard extends StatelessWidget {
                   'My Dashboard',
                   'View trades',
                   () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>  CopierDashboard(),
-                      ),
-                    );
+                    Get.toNamed(RRouteHelper.copierDashboard);
                   },
                 ),
                 const SizedBox(width: 10),
@@ -87,7 +82,7 @@ class CopyTradingDashboard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 'PRO Traders',
-                style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w700),
+                style: TextStyle(color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.w700),
               ),
             ),
             const SizedBox(height: RSizes.xs),
@@ -98,16 +93,15 @@ class CopyTradingDashboard extends StatelessWidget {
                   final trader = traders[index];
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => CopyTradingDetails(
-                            name: trader['name'] as String,
-                            roi: trader['roi'] as String,
-                            aum: trader['aum'] as String,
-                            dataPoints: trader['data'] as List<double>,
-                          ),
-                        ),
+
+                      Get.toNamed(
+                        RRouteHelper.copyTradingDetails, 
+                        arguments: {
+                            "name": trader['name'] as String,
+                            "roi": trader['roi'] as String,
+                            "aum": trader['aum'] as String,
+                            "dataPoints": trader['data'] as List<double>,                          
+                        }
                       );
                     },
                     child: _buildTraderCard(
@@ -181,19 +175,19 @@ class CopyTradingDashboard extends StatelessWidget {
                 backgroundColor: AppColors.lightBackgroundColor,
                 borderColor: const Color(0xFF5283FF),
                 text: "JI",
-                textFontSize: 16, // you can adjust this if needed
+                textFontSize: 16,
               ),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name, style: TextStyles.body.copyWith(color: Colors.white)),
+                  Text(name, style: RTextStyle.body.copyWith(color: AppColors.whiteColor)),
 
                   Row(
                     children: [
                       Icon(Icons.people_alt_outlined, color: AppColors.blueColor, size: 16,),
                       SizedBox(width: RSizes.xs),
-                      Text('500', style: TextStyles.body.copyWith(color: AppColors.blueColor)),
+                      Text('500', style: RTextStyle.body.copyWith(color: AppColors.blueColor)),
                     ],
                   ),
                 ],
@@ -203,7 +197,7 @@ class CopyTradingDashboard extends StatelessWidget {
                 radius: RSizes.cardRadiusXs,
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                 backgroundColor: AppColors.backgroundColor,
-                child: Text('Copy', style: TextStyles.body.copyWith(color: AppColors.greyColor)),
+                child: Text('Copy', style: RTextStyle.body.copyWith(color: AppColors.greyColor)),
               ),
 
             ],
@@ -221,14 +215,14 @@ class CopyTradingDashboard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("ROI", style: TextStyles.body.copyWith(color: AppColors.greyColor)),
+                  Text("ROI", style: RTextStyle.body.copyWith(color: AppColors.greyColor)),
 
-                  Text("+120.42%", style: TextStyles.subtitle.copyWith(color: AppColors.greenColor)),
+                  Text("+120.42%", style: RTextStyle.subtitle.copyWith(color: AppColors.greenColor)),
 
                   Row(
                     children: [
-                      Text("Total PNL: ", style: TextStyles.body.copyWith(color: AppColors.greenColor)),
-                      Text("\$38,667.24", style: TextStyles.subtitle.copyWith(color: Colors.white)),
+                      Text("Total PNL: ", style: RTextStyle.body.copyWith(color: AppColors.greenColor)),
+                      Text("\$38,667.24", style: RTextStyle.subtitle.copyWith(color: AppColors.whiteColor)),
                     ],
                   ),
 
@@ -256,8 +250,8 @@ class CopyTradingDashboard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text("Win rate: ", style: TextStyles.body.copyWith(color: AppColors.greyColor),),
-                    Text("100%", style: TextStyles.subtitle.copyWith(color: Colors.white),),
+                    Text("Win rate: ", style: RTextStyle.body.copyWith(color: AppColors.greyColor),),
+                    Text("100%", style: RTextStyle.subtitle.copyWith(color: AppColors.whiteColor),),
                   ],
                 ),
                 Spacer(),
@@ -266,8 +260,8 @@ class CopyTradingDashboard extends StatelessWidget {
                   children: [
                     Icon(Icons.error_outline_outlined, color: AppColors.greyColor, size: 14,),
                     SizedBox(width: RSizes.xs * 0.5),
-                    Text("AUM: ", style: TextStyles.body.copyWith(color: AppColors.greyColor),),
-                    Text("38,667.29%", style: TextStyles.subtitle.copyWith(color: Colors.white),),
+                    Text("AUM: ", style: RTextStyle.body.copyWith(color: AppColors.greyColor),),
+                    Text("38,667.29%", style: RTextStyle.subtitle.copyWith(color: AppColors.whiteColor),),
                   ],
                 )                
               ],

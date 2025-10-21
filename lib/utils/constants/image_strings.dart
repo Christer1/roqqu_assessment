@@ -23,9 +23,17 @@ class RImages {
   static const String btc = "assets/images/coins/btc.png";
 
 
+    //coins
+  static const String buy = "assets/images/icons/buy.png";
+  static const String deposit = "assets/images/icons/deposit.png";
+  static const String send = "assets/images/icons/send.png";
+  static const String withdraw = "assets/images/icons/withdraw.png";
+
+
   //others
   static const String importantMessage = "assets/images/important_message.png";
   static const String proTraderBadge = "assets/images/pro_trader_badge.png";
+  static const String crown = "assets/images/crown.png";
   static const String avatarImg = "assets/images/avatar.png";
 
 }

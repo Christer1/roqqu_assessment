@@ -1,7 +1,6 @@
-// Placeholder for other pages
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 
 class PlaceholderPage extends StatelessWidget {
   final String title;
@@ -15,7 +14,7 @@ class PlaceholderPage extends StatelessWidget {
       child: Center(
         child: Text(
           '$title Page',
-          style: TextStyles.body.copyWith(color: Colors.white),
+          style: RTextStyle.body.copyWith(color: AppColors.whiteColor),
           textAlign: TextAlign.center,
         ),
       ),

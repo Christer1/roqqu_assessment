@@ -1,95 +1,149 @@
 import 'package:flutter/material.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:get/get.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
+import 'package:roqqu_assessment/presentation/controllers/crypto_controller.dart';
 import 'package:roqqu_assessment/presentation/screens/dashboard/widgets/coin_item.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
+import 'package:roqqu_assessment/common/widgets/shimmer_effect.dart';
 
 class ListCoinSection extends StatelessWidget {
-  const ListCoinSection({
-    super.key,
-  });
+  const ListCoinSection({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final coins = [
-      {
-        'name': 'Bitcoin',
-        'symbol': 'BTC',
-        'price': '\$22,840',
-        'change': '-0.61%',
-        'isPositive': false,
-        'icon': '₿', // You can replace with actual icons or images
-      },
-      {
-        'name': 'Ethereum',
-        'symbol': 'ETH',
-        'price': '\$0.36',
-        'change': '-0.61%',
-        'isPositive': false,
-        'icon': 'Ξ', // You can replace with actual icons or images
-      },
-      {
-        'name': 'Binance Coin',
-        'symbol': 'BNB',
-        'price': '\$305.20',
-        'change': '+1.25%',
-        'isPositive': true,
-        'icon': '⎈',
-      },
-      {
-        'name': 'Cardano',
-        'symbol': 'ADA',
-        'price': '\$0.38',
-        'change': '-0.45%',
-        'isPositive': false,
-        'icon': 'A',
-      },
-    ];
-
+    final controller = Get.find<CryptoController>();
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: RSizes.md),
       child: Column(
         children: [
-          // Section Header
+          // Header
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Listed Coins',
-                style: TextStyles.body.copyWith(
-                  color: Color(0xFFA7B1BC),
+                style: RTextStyle.body.copyWith(
+                  color: const Color(0xFFA7B1BC),
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
-              ),
+                ),
               ),
               GestureDetector(
-                onTap: () => {},
+                onTap: () {},
                 child: Text(
                   'See all',
-                  style: TextStyles.body.copyWith(
-                  color: Color(0xFF85D1F0),
+                  style: RTextStyle.body.copyWith(
+                    color: const Color(0xFF85D1F0),
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
             ],
-          ),  
-          const SizedBox(height: RSizes.md),     
-          // Coins List
+          ),
+          const SizedBox(height: RSizes.md),
+
           ListView.separated(
-            padding: EdgeInsets.zero, // Important: remove default padding
+            padding: EdgeInsets.zero,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: coins.length,
-            separatorBuilder: (context, index) => const SizedBox(height: RSizes.md),
+            itemCount: controller.coins.length,
+            separatorBuilder: (_, __) => const SizedBox(height: RSizes.md),
             itemBuilder: (context, index) {
-              final coin = coins[index];
-              return CoinItem(coin: coin);
+              final coin = controller.coins[index];
+              final symbol = coin['symbol'] as String;
+              
+              return Obx(() {
+                // Access the reactive map directly
+                final coinData = controller.coinPrices[symbol];
+                
+                // Show shimmer if no data for this coin
+                if (coinData == null) {
+                  return _buildCoinShimmer();
+                }
+
+                final short = coin['short'] as String;
+                final price = coinData['price'] ?? 0.0;
+                final change = coinData['change'] ?? 0.0;
+                final isPositive = coinData['isPositive'] ?? true;
+
+                final coinItemData = {
+                  'name': coin['name'],
+                  'symbol': symbol.replaceAll('USDT', ''),
+                  'price': '\$${price.toStringAsFixed(2)}',
+                  'change': '${change.toStringAsFixed(2)}%',
+                  'isPositive': isPositive,
+                  'icon': controller.getCoinIconUrl(short),
+                };
+
+                return CoinItem(coin: coinItemData);
+              });
             },
           ),
         ],
       ),
     );
   }
-}
 
+  Widget _buildCoinShimmer() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1E2328),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          // Icon shimmer
+          RShimmerEffect(
+            width: 40,
+            height: 40,
+            radius: 20,
+          ),
+          const SizedBox(width: 12),
+          
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Name shimmer
+                RShimmerEffect(
+                  width: 100,
+                  height: 16,
+                  radius: 4,
+                ),
+                const SizedBox(height: 4),
+                // Symbol shimmer
+                RShimmerEffect(
+                  width: 60,
+                  height: 14,
+                  radius: 4,
+                ),
+              ],
+            ),
+          ),
+          
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              // Price shimmer
+              RShimmerEffect(
+                width: 80,
+                height: 16,
+                radius: 4,
+              ),
+              const SizedBox(height: 4),
+              // Change shimmer
+              RShimmerEffect(
+                width: 60,
+                height: 14,
+                radius: 4,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

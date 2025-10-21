@@ -1,43 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:get/get.dart';
 import 'package:roqqu_assessment/common/custom_shapes/circular_container.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
 import 'package:roqqu_assessment/common/functions/bottom_sheet.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 import 'package:roqqu_assessment/presentation/screens/copy_trading/copy_trading_risks_modal.dart';
 import 'package:roqqu_assessment/presentation/screens/copy_trading/widgets/profile_badge.dart';
 import 'package:roqqu_assessment/utils/constants/image_strings.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
+import 'package:roqqu_assessment/utils/helpers/helper_functions.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 
 class CopyTradingDetails extends StatelessWidget {
-  final String name;
-  final String roi;
-  final String aum;
-  final List<double> dataPoints;
-
-  const CopyTradingDetails({
-    super.key,
-    required this.name,
-    required this.roi,
-    required this.aum,
-    required this.dataPoints,
-  });
+  const CopyTradingDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Get arguments from GetX navigation
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final String name = arguments['name'] as String;
+    final List<double> dataPoints = arguments['dataPoints'] as List<double>;
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
           backgroundColor: AppColors.backgroundColor,
-          leading: const BackButton(color: Colors.white),
+          leading: const BackButton(color: AppColors.whiteColor),
           title: Text(
             'Trading Details',
-            style: TextStyles.subtitle.copyWith(
-              color: Colors.white,
+            style: RTextStyle.subtitle.copyWith(
+              color: AppColors.whiteColor,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -51,7 +47,7 @@ class CopyTradingDetails extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildTraderHeader(),
+                    _buildTraderHeader(name),
                     const SizedBox(height: RSizes.spaceBtwItems),
                     _buildTraderStats(),
                     const SizedBox(height: RSizes.spaceBtwItems),
@@ -68,7 +64,7 @@ class CopyTradingDetails extends StatelessWidget {
                         dividerColor: Colors.transparent,
                         indicatorWeight: 0.5,
                         indicatorColor: AppColors.blueColor,
-                        labelColor: Colors.white,
+                        labelColor: AppColors.whiteColor,
                         unselectedLabelColor: AppColors.greyColor,
                         tabs: [
                           Tab(text: 'Chart'),
@@ -80,11 +76,11 @@ class CopyTradingDetails extends StatelessWidget {
                     ),
                   //tab view
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.8,
+                    height: RHelperFunctions.screenHeight() * 0.8,
                     child: TabBarView(
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        SingleChildScrollView(child: _buildChartTab(context)),
+                        SingleChildScrollView(child: _buildChartTab(context, dataPoints)),
                         SingleChildScrollView(child: _buildStatsTab(context)),
                         SingleChildScrollView(child: _buildAllTradesTab(context)),
                         SingleChildScrollView(child: _buildCopiersTab(context)),
@@ -97,7 +93,7 @@ class CopyTradingDetails extends StatelessWidget {
               ),
             ),
 
-            // Fixed Copy Trade Button
+            // Copy Trade Button
             Container(
               color: AppColors.backgroundColor,
               padding: const EdgeInsets.symmetric(
@@ -115,7 +111,7 @@ class CopyTradingDetails extends StatelessWidget {
   }
 
   // --- Chart Tab ---
-  Widget _buildChartTab(BuildContext context) {
+  Widget _buildChartTab(BuildContext context, List<double> dataPoints) {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Column(
@@ -174,8 +170,8 @@ class CopyTradingDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Trading statistics',
-                    style: TextStyles.bodySmall.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.w700)),
+                    style: RTextStyle.bodySmall.copyWith(
+                        color: AppColors.whiteColor, fontWeight: FontWeight.w700)),
                 SizedBox(height: RSizes.sm),                    
                 const SizedBox(height: RSizes.sm),
                 _statItem('Average ROI', '+33.73%', Color(0xFF00FF85)),
@@ -184,13 +180,13 @@ class CopyTradingDetails extends StatelessWidget {
                   color: Color(0xFF262932),
                 ),
                 SizedBox(height: RSizes.sm),                    
-                 _statItem('Win rate', '100%', Colors.white),
+                 _statItem('Win rate', '100%', AppColors.whiteColor),
                 Divider(
                   thickness: 2,
                   color: Color(0xFF262932),
                 ),
                 SizedBox(height: RSizes.sm),                    
-                _statItem('Total profit', '61850.63 USDT', Colors.white),
+                _statItem('Total profit', '61850.63 USDT', AppColors.whiteColor),
                 Divider(
                   thickness: 2,
                   color: Color(0xFF262932),
@@ -202,12 +198,10 @@ class CopyTradingDetails extends StatelessWidget {
                   color: Color(0xFF262932),
                 ),
                 SizedBox(height: RSizes.sm),                    
-                _statItem('Total trades', '72', Colors.white),
+                _statItem('Total trades', '72', AppColors.whiteColor),
               ],
             ),
           ),
-
-
 
           const SizedBox(height: RSizes.xs),
           RRoundedContainer(
@@ -219,8 +213,8 @@ class CopyTradingDetails extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Trading pairs',
-                    style: TextStyles.bodySmall.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.w700)),
+                    style: RTextStyle.bodySmall.copyWith(
+                        color: AppColors.whiteColor, fontWeight: FontWeight.w700)),
 
                   const SizedBox(height: RSizes.sm),
                   Wrap(
@@ -243,7 +237,7 @@ class CopyTradingDetails extends StatelessWidget {
                                   horizontal: 14, vertical: 7),
                               backgroundColor: AppColors.backgroundColor,
                               child: Text(pair,
-                                  style: TextStyles.body
+                                  style: RTextStyle.body
                                       .copyWith(color: AppColors.greyColor)),
                             ))
                         .toList(),
@@ -278,21 +272,19 @@ class CopyTradingDetails extends StatelessWidget {
                   Image.asset(RImages.btc),
                   SizedBox(width: RSizes.sm),
                   Text('BTCUSDT',
-                      style: TextStyles.subtitle
+                      style: RTextStyle.subtitle
                           .copyWith(color: AppColors.greyColor)),
               
                               Text(' - 10X',
-                      style: TextStyles.subtitle
+                      style: RTextStyle.subtitle
                           .copyWith(color: AppColors.blueColor, fontSize: 16)),
               Spacer(),
               Text('+3.28% ROI',
-                  style: TextStyles.body
+                  style: RTextStyle.body
                       .copyWith(color: AppColors.greenColor, fontWeight: FontWeight.w500)),
               ],
               ),
             ),
-
-
 
             const SizedBox(height: RSizes.sm),
             _tradeDetail('Entry price', '1.9661 USDT'),
@@ -347,7 +339,7 @@ Widget _buildCopiersTab(BuildContext context) {
             radius: RSizes.cardRadiusSm,
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: const TextField(
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: AppColors.whiteColor),
             decoration: InputDecoration(
               hintText: 'Search for PRO traders',
               hintStyle: TextStyle(color: AppColors.greyColor),
@@ -381,8 +373,8 @@ Widget _buildCopiersTab(BuildContext context) {
                         child: Center(
                           child: Text(
                             copier["initials"] as String,
-                            style: TextStyles.subtitle.copyWith(
-                              color: Colors.white,
+                            style: RTextStyle.subtitle.copyWith(
+                              color: AppColors.whiteColor,
                               fontSize: 16,
                             ),
                           ),
@@ -393,7 +385,7 @@ Widget _buildCopiersTab(BuildContext context) {
                       Expanded(
                         child: Text(
                           copier["name"] as String,
-                          style: TextStyles.body.copyWith(
+                          style: RTextStyle.body.copyWith(
                           color: AppColors.greyColor
                           ),
                         ),
@@ -417,14 +409,14 @@ Widget _buildCopiersTab(BuildContext context) {
                             children: [
                               Text(
                                 "Total volume",
-                                style: TextStyles.bodySmall.copyWith(
+                                style: RTextStyle.bodySmall.copyWith(
                                   color: AppColors.greyColor,
                                 ),
                               ),
                               Text(
                                 "996.28 USDT",
-                                style: TextStyles.subtitle.copyWith(
-                                  color: Colors.white,
+                                style: RTextStyle.subtitle.copyWith(
+                                  color: AppColors.whiteColor,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -441,14 +433,14 @@ Widget _buildCopiersTab(BuildContext context) {
                           children: [
                             Text(
                               "Total Profit",
-                              style: TextStyles.bodySmall.copyWith(
+                              style: RTextStyle.bodySmall.copyWith(
                                 color: AppColors.greyColor,
                               ),
                             ),
                             Text(
                               "278.81 USDT",
-                              style: TextStyles.subtitle.copyWith(
-                                color: Colors.white,
+                              style: RTextStyle.subtitle.copyWith(
+                                color: AppColors.whiteColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -476,7 +468,7 @@ Widget _buildCopiersTab(BuildContext context) {
 
 
   // --- Helper Sections ---
-  Widget _buildTraderHeader() {
+  Widget _buildTraderHeader(String name) {
     return Row(
       children: [
 
@@ -494,15 +486,15 @@ Widget _buildCopiersTab(BuildContext context) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(name,
-                style: TextStyles.subtitle
-                    .copyWith(color: Colors.white, fontSize: 18)),
+                style: RTextStyle.subtitle
+                    .copyWith(color: AppColors.whiteColor, fontSize: 18)),
             Row(
               children: [
                 const Icon(Icons.people_alt_outlined,
                     color: AppColors.blueColor, size: 16),
                 const SizedBox(width: RSizes.xs),
                 Text('500 Copiers',
-                    style: TextStyles.body
+                    style: RTextStyle.body
                         .copyWith(color: AppColors.blueColor, fontSize: 12)),
               ],
             ),
@@ -534,8 +526,8 @@ Widget _buildCopiersTab(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Certified PROtrader",
-              style: TextStyles.body.copyWith(
-                  color: Colors.white, fontWeight: FontWeight.w700)),
+              style: RTextStyle.body.copyWith(
+                  color: AppColors.whiteColor, fontWeight: FontWeight.w700)),
           const SizedBox(height: RSizes.sm),
           Row(
             children: [
@@ -556,7 +548,7 @@ Widget _buildCopiersTab(BuildContext context) {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         radius: RSizes.cardRadiusXs,
         child: Text(text,
-            style: TextStyles.bodySmall.copyWith(color: AppColors.greyColor)),
+            style: RTextStyle.bodySmall.copyWith(color: AppColors.greyColor)),
       );
 
   Widget _badge(IconData icon, String label, Color color, Color bg) =>
@@ -568,7 +560,7 @@ Widget _buildCopiersTab(BuildContext context) {
           children: [
             Icon(icon, color: color, size: 18),
             const SizedBox(width: RSizes.sm),
-            Text(label, style: TextStyles.bodySmall.copyWith(color: color)),
+            Text(label, style: RTextStyle.bodySmall.copyWith(color: color)),
           ],
         ),
       );
@@ -582,10 +574,10 @@ Widget _buildCopiersTab(BuildContext context) {
             Image.asset(RImages.btcImgWithArrow),
             SizedBox(width: RSizes.md),
             Text(label,
-                style: TextStyles.bodySmall.copyWith(color: Colors.grey[300])),
+                style: RTextStyle.bodySmall.copyWith(color: Colors.grey[300])),
             Spacer(),
             Text(value,
-                style: TextStyles.bodySmall
+                style: RTextStyle.bodySmall
                     .copyWith(color: color)),
           ],
         ),
@@ -598,9 +590,9 @@ Widget _buildCopiersTab(BuildContext context) {
           children: [
             Text(label,
                 style:
-                    TextStyles.body.copyWith(color: AppColors.greyColor)),
+                    RTextStyle.body.copyWith(color: AppColors.greyColor)),
             Text(value,
-                style: TextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.w500)),
+                style: RTextStyle.body.copyWith(color: AppColors.whiteColor, fontWeight: FontWeight.w500)),
           ],
         ),
   );
@@ -618,7 +610,7 @@ Widget _buildCopiersTab(BuildContext context) {
                 alignment: Alignment.topRight,
                 child: IconButton(
                   onPressed: () => Navigator.pop(context),
-                  icon: const Icon(Icons.close, color: Colors.white),
+                  icon: const Icon(Icons.close, color: AppColors.whiteColor),
                 ),
               ),
               const SizedBox(height: RSizes.spaceBtwItems),
@@ -626,12 +618,12 @@ Widget _buildCopiersTab(BuildContext context) {
                   height: 140, fit: BoxFit.contain),
               const SizedBox(height: RSizes.spaceBtwItems),
               Text('Important message!',
-                  style: TextStyles.headline
-                      .copyWith(color: Colors.white, fontSize: 20)),
+                  style: RTextStyle.headline
+                      .copyWith(color: AppColors.whiteColor, fontSize: 20)),
               const SizedBox(height: RSizes.sm),
               Text(
                 "Don't invest unless you're prepared and understand the risks involved in copy trading.",
-                style: TextStyles.body.copyWith(color: Colors.grey[300]),
+                style: RTextStyle.body.copyWith(color: Colors.grey[300]),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: RSizes.sm),
@@ -639,11 +631,11 @@ Widget _buildCopiersTab(BuildContext context) {
                 text: TextSpan(
                   text: 'Learn more',
                   style:
-                      TextStyles.body.copyWith(color: Colors.lightBlueAccent),
+                      RTextStyle.body.copyWith(color: Colors.lightBlueAccent),
                   children: [
                     TextSpan(
                       text: ' about the risks.',
-                      style: TextStyles.body
+                      style: RTextStyle.body
                           .copyWith(color: Colors.grey[300]),
                     ),
                   ],
@@ -666,12 +658,12 @@ Widget _buildCopiersTab(BuildContext context) {
                     child: RichText(
                       text: TextSpan(
                         text: "Check this box to agree to Roqqu's copy trading ",
-                        style: TextStyles.bodySmall.copyWith(
-                            color: Colors.white, fontWeight: FontWeight.w700),
+                        style: RTextStyle.bodySmall.copyWith(
+                            color: AppColors.whiteColor, fontWeight: FontWeight.w700),
                         children: [
                           TextSpan(
                             text: 'policy',
-                            style: TextStyles.body.copyWith(
+                            style: RTextStyle.body.copyWith(
                                 color: Colors.lightBlueAccent,
                                 fontWeight: FontWeight.w700),
                           ),
@@ -703,5 +695,3 @@ Widget _buildCopiersTab(BuildContext context) {
     );
   }
 }
-
-

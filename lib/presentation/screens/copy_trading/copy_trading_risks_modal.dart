@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:roqqu_assessment/common/functions/bottom_sheet.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
-import 'package:roqqu_assessment/presentation/screens/copy_trading/amount_screen.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
+import 'package:roqqu_assessment/routes/route_helper.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 
@@ -88,7 +89,7 @@ class _RisksContentState extends State<_RisksContent> {
           alignment: Alignment.topRight,
           child: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.close, color: Colors.white),
+            icon: const Icon(Icons.close, color: AppColors.whiteColor),
           ),
         ),
 
@@ -96,8 +97,8 @@ class _RisksContentState extends State<_RisksContent> {
 
         Text(
           'Risks involved in copy trading',
-          style: TextStyles.headline.copyWith(
-            color: Colors.white,
+          style: RTextStyle.headline.copyWith(
+            color: AppColors.whiteColor,
             fontSize: 20,
             fontWeight: FontWeight.w800,
           ),
@@ -107,7 +108,7 @@ class _RisksContentState extends State<_RisksContent> {
 
         Text(
           'Please make sure you read the following risks involved in copy trading before making a decision.',
-          style: TextStyles.body.copyWith(
+          style: RTextStyle.body.copyWith(
             color: Colors.grey[400],
           ),
           textAlign: TextAlign.center,
@@ -130,8 +131,8 @@ class _RisksContentState extends State<_RisksContent> {
                 ListTile(
                   title: Text(
                     item['title']!,
-                    style: TextStyles.body.copyWith(
-                      color: Colors.white,
+                    style: RTextStyle.body.copyWith(
+                      color: AppColors.whiteColor,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -139,7 +140,7 @@ class _RisksContentState extends State<_RisksContent> {
                     isExpanded
                         ? Icons.keyboard_arrow_up
                         : Icons.keyboard_arrow_down,
-                    color: Colors.white,
+                    color: AppColors.whiteColor,
                   ),
                   onTap: () {
                     setState(() {
@@ -155,7 +156,7 @@ class _RisksContentState extends State<_RisksContent> {
                     ),
                     child: Text(
                       item['content']!,
-                      style: TextStyles.bodySmall.copyWith(
+                      style: RTextStyle.bodySmall.copyWith(
                         color: Colors.grey[300],
                       ),
                     ),
@@ -173,12 +174,8 @@ class _RisksContentState extends State<_RisksContent> {
 
             onPressed: () {
               Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const AmountScreen()),
-              );
+              Get.toNamed(RRouteHelper.amountScreen);
             },
-
             text: 'I have read the risks',
           ),
         ),

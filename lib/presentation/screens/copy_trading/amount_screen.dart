@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 import 'package:roqqu_assessment/presentation/screens/copy_trading/confirm_transaction_details.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
+import 'package:roqqu_assessment/utils/helpers/helper_functions.dart';
 import 'package:roqqu_assessment/utils/theme/custom_themes/elevated_button_theme.dart';
 
 
@@ -31,10 +32,10 @@ class _AmountScreenState extends State<AmountScreen> {
       backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
         title:  Text("Enter amount",
-            style: TextStyles.body.copyWith(color: Colors.white, fontSize: 16)),
+            style: RTextStyle.body.copyWith(color: AppColors.whiteColor, fontSize: 16)),
 
         backgroundColor: AppColors.backgroundColor,
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: AppColors.whiteColor),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -51,13 +52,13 @@ class _AmountScreenState extends State<AmountScreen> {
                   const TextInputType.numberWithOptions(decimal: true),
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
+                color: AppColors.whiteColor,
                 fontSize: 34,
                 fontWeight: FontWeight.w600,
               ),
               decoration: InputDecoration(
                 hintText: "0 USD",
-                hintStyle: TextStyles.headline.copyWith(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 40),
+                hintStyle: RTextStyle.headline.copyWith(color: AppColors.whiteColor, fontWeight: FontWeight.w900, fontSize: 40),
                 border: InputBorder.none,
               ),
             ),
@@ -69,7 +70,7 @@ class _AmountScreenState extends State<AmountScreen> {
               backgroundColor: AppColors.lightBackgroundColor,
               child: Text(
                 "Transaction fee (1%) - ${fee.toStringAsFixed(2)} USD",
-                style: TextStyles.body.copyWith(color: Colors.white, fontWeight: FontWeight.w500),
+                style: RTextStyle.body.copyWith(color: AppColors.whiteColor, fontWeight: FontWeight.w500),
               ),
             ),
 
@@ -88,15 +89,15 @@ class _AmountScreenState extends State<AmountScreen> {
                     children: [
                       Text(
                         "USD Balance",
-                        style: TextStyles.body.copyWith(
+                        style: RTextStyle.body.copyWith(
                           color: AppColors.greyColor,
                           fontSize: 12,
                         ),
                       ),
                       Text(
                         '\$240.73',
-                        style: TextStyles.body.copyWith(
-                          color: Colors.white,
+                        style: RTextStyle.body.copyWith(
+                          color: AppColors.whiteColor,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -116,7 +117,7 @@ class _AmountScreenState extends State<AmountScreen> {
                       child: const Text(
                         "Use Max",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: AppColors.whiteColor,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -134,14 +135,10 @@ class _AmountScreenState extends State<AmountScreen> {
               onPressed: _controller.text.isEmpty
                   ? null
                   : () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ConfirmTransactionDetails(
+                      RHelperFunctions.navigateToScreen(context, ConfirmTransactionDetails(
                             amount: _controller.text,
                             fee: fee.toStringAsFixed(2),
-                          ),
-                        ),
+                          )
                       );
                     },
             ),

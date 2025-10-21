@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class TextStyles {
+class RTextStyle {
   static final headline = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w800,

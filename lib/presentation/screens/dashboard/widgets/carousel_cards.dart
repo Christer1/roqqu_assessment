@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roqqu_assessment/common/custom_shapes/rounded_container.dart';
-import 'package:roqqu_assessment/core/constants/colors.dart';
-import 'package:roqqu_assessment/core/constants/text_styles.dart';
+import 'package:roqqu_assessment/utils/constants/colors.dart';
+import 'package:roqqu_assessment/utils/constants/text_styles.dart';
 import 'package:roqqu_assessment/utils/constants/sizes.dart';
 
 class CarouselCards extends StatelessWidget {
@@ -58,7 +58,7 @@ class CarouselCards extends StatelessWidget {
                   ),
                   const SizedBox(width: RSizes.md),
                   
-                  // Text content - Use Expanded to constrain width
+                  // Text content
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +67,7 @@ class CarouselCards extends StatelessWidget {
                         // Title
                         Text(
                           card['title'] as String,
-                          style: TextStyles.body.copyWith(
+                          style: RTextStyle.body.copyWith(
                             color: Colors.white,
                             fontSize: 14,
                             fontWeight: FontWeight.w700,
@@ -80,7 +80,7 @@ class CarouselCards extends StatelessWidget {
                         // Description
                         Text(
                           card['description'] as String,
-                          style: TextStyles.body.copyWith(
+                          style: RTextStyle.body.copyWith(
                             color: Colors.white70,
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
