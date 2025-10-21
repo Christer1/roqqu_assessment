@@ -42,13 +42,15 @@ Efficient update rendering without unnecessary rebuilds
 
 Clone the repository
 
-git clone https://github.com/yourusername/roqqu_assessment.git
-cd roqqu_assessment
+*git clone https://github.com/Christer1/roqqu_assessment.git*
+
+
+*cd roqqu_assessment*
 
 
 # Install dependencies
 
-flutter pub get
+*flutter pub get*
 
 
 # Run the app
@@ -57,5 +59,11 @@ flutter run
 
 # Demo
 
-Below is a short video of the project in action here.
+*Below are links to videos demonstrating the project:*
+
+Simulator device:  https://drive.google.com/file/d/1n49TnDO1eFeqWn37T25jmoXkCACze7QK/view?usp=sharing
+
+Physical device:   https://drive.google.com/file/d/1odXuxk1SYTPmWCFMH5wYTuE65U1Fx4He/view?usp=sharing
+
+
 
