@@ -1,16 +1,62 @@
-# roqqu_assessment
+Roqqu Mobile Developer Assessment
+Overview
 
-A new Flutter project.
+This project is a Flutter implementation of the Roqqu Mobile Assessment UI, designed according to the provided Figma reference. It integrates real-time crypto data via the Binance WebSocket API to display live market updates, ensuring a responsive and smooth user experience.
 
-## Getting Started
+In addition to replicating the provided Figma design, the project also implements the Copy Trading feature screens, maintaining close visual and functional accuracy with attention to spacing, typography, and interaction flow.
 
-This project is a starting point for a Flutter application.
+Features
 
-A few resources to get you started if this is your first Flutter project:
+Real-time cryptocurrency price updates using Binance WebSocket API
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Accurate and detailed Figma design implementation, including Copy Trading UI
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Smooth animations and transitions for a polished and fluid experience
+
+Clean and modular code architecture following Flutter best practices
+
+Efficient state management for optimized performance
+
+Responsive layout for multiple screen sizes
+
+Architecture & State Management
+
+Architecture Pattern: Clean, modular structure with clear separation of concerns
+
+State Management: GetX (update if you used another)
+
+API Integration
+
+WebSocket Source: Binance Stream API
+
+
+
+Implemented Features:
+
+Real-time market data updates for multiple coins
+
+Automatic reconnection and error handling
+
+Efficient update rendering without unnecessary rebuilds
+
+Setup Instructions
+
+Clone the repository
+
+git clone https://github.com/yourusername/roqqu_assessment.git
+cd roqqu_assessment
+
+
+Install dependencies
+
+flutter pub get
+
+
+Run the app
+
+flutter run
+
+Demo
+
+Attach a short video or GIF showcasing the project in action here.
+Example:
